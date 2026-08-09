@@ -1,12 +1,254 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Readora</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Readora - Author Studio</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #050914;
+  color: white;
+}
+
+.header {
+  padding: 20px;
+  background: #080d1c;
+  border-bottom: 1px solid #242b45;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.logo span {
+  color: #9b5cff;
+}
+
+.container {
+  max-width: 700px;
+  margin: auto;
+  padding: 25px 18px 50px;
+}
+
+h1 {
+  font-size: 30px;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  color: #9da6bd;
+  margin-bottom: 30px;
+}
+
+.card {
+  background: #0b1122;
+  border: 1px solid #252d48;
+  border-radius: 18px;
+  padding: 22px;
+  margin-bottom: 22px;
+}
+
+.card h2 {
+  margin-top: 0;
+}
+
+label {
+  display: block;
+  margin: 18px 0 8px;
+  font-weight: bold;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid #303953;
+  background: #070c19;
+  color: white;
+  font-size: 16px;
+}
+
+textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.upload-box {
+  border: 2px dashed #7144c7;
+  border-radius: 15px;
+  padding: 25px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.upload-box input {
+  border: none;
+  background: transparent;
+}
+
+.button {
+  width: 100%;
+  padding: 16px;
+  margin-top: 22px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #9b4dff, #12b9e8);
+  color: white;
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.note {
+  color: #8993aa;
+  font-size: 13px;
+  line-height: 1.5;
+  margin-top: 15px;
+}
+
+.success {
+  display: none;
+  padding: 15px;
+  border-radius: 10px;
+  background: #123d32;
+  color: #57e0b1;
+  margin-top: 15px;
+}
+</style>
 </head>
+
 <body>
-  <h1>Welcome to Readora</h1>
-  <p>A digital reading platform for authors and readers.</p>
+
+<header class="header">
+  <div class="logo">📖 <span>Readora</span></div>
+  <div>Author Studio</div>
+</header>
+
+<main class="container">
+
+  <h1>Publish your story</h1>
+
+  <p class="subtitle">
+    Give your readers something beautiful to discover.
+  </p>
+
+  <!-- PROFILE PICTURE -->
+
+  <section class="card">
+
+    <h2>👤 Author Profile</h2>
+
+    <label>Profile Picture</label>
+
+    <div class="upload-box">
+      <input
+        type="file"
+        id="profilePicture"
+        accept="image/*"
+      >
+      <p>Choose your author picture</p>
+    </div>
+
+  </section>
+
+  <!-- BOOK UPLOAD -->
+
+  <section class="card">
+
+    <h2>📚 Publish a Book</h2>
+
+    <label>Book Cover</label>
+
+    <div class="upload-box">
+      <input
+        type="file"
+        id="bookCover"
+        accept="image/*"
+      >
+      <p>Upload your book cover</p>
+    </div>
+
+    <label>Book Title</label>
+
+    <input
+      type="text"
+      id="bookTitle"
+      placeholder="Enter your book title"
+    >
+
+    <label>Author Name</label>
+
+    <input
+      type="text"
+      id="authorName"
+      placeholder="Enter author's name"
+    >
+
+    <label>Book Description</label>
+
+    <textarea
+      id="description"
+      placeholder="Tell readers about your book..."
+    ></textarea>
+
+    <label>Book File</label>
+
+    <div class="upload-box">
+      <input
+        type="file"
+        id="bookFile"
+        accept=".pdf,.epub"
+      >
+      <p>Upload your book file</p>
+    </div>
+
+    <button class="button" onclick="publishBook()">
+      Publish Book
+    </button>
+
+    <div id="successMessage" class="success">
+      ✓ Your book is ready for submission.
+    </div>
+
+    <p class="note">
+      Your book should remain inside Readora for readers to read.
+      Downloading will not be enabled for readers.
+    </p>
+
+  </section>
+
+</main>
+
+<script>
+
+function publishBook() {
+
+  const title = document.getElementById("bookTitle").value;
+  const author = document.getElementById("authorName").value;
+  const description = document.getElementById("description").value;
+  const bookFile = document.getElementById("bookFile").files.length;
+  const cover = document.getElementById("bookCover").files.length;
+
+  if (!title || !author || !description || !bookFile || !cover) {
+    alert("Please complete all book details and upload the cover and book file.");
+    return;
+  }
+
+  document.getElementById("successMessage").style.display = "block";
+}
+
+</script>
+
 </body>
 </html>
